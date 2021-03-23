@@ -28,12 +28,13 @@ def detect_arr(img):
             if(cv2.contourArea(cnts[x]) > best_val):
                 print(mind,maxd/mind,cv2.contourArea(cnts[x]) / (w*h))
                 best_val = cv2.contourArea(cnts[x])
-                best_id = x;
-    xc,yc,w,h = cv2.boundingRect(cnts[best_id])
+                best_id = x
+    
     if(best_id == -1):
-        return "none"
+        return "n"
+    xc,yc,w,h = cv2.boundingRect(cnts[best_id])
     img = cv2.rectangle(img,(xc,yc),(xc + w,yc + h),(0,255,0),2)
-   #mask_t = mask[yc:yc+h,xc:xc + w]
+    #mask_t = mask[yc:yc+h,xc:xc + w]
     
     if(w < h):
         mask_t = mask[yc:yc+h,int(xc+(w*0.25)):int(xc+(w*0.75))]
@@ -57,7 +58,9 @@ def detect_arr(img):
             return "d"
         else:
             return "u"
+"""
 img = cv2.imread("image.png")
 print(detect_arr(img))
 #cv2.waitKey(10000)
 cv2.destroyAllWindows()
+"""
