@@ -22,13 +22,6 @@ def detect_arr(img):
             continue
         mind = min(w,h)
         maxd = max(w,h)
-        if(mind <= 5):
-            continue
-        print(mind,maxd/mind,cv2.contourArea(cnts[x]) / (w*h))
-        print(mind > 3 and maxd/mind > 1.7 and maxd/mind < 3 and cv2.contourArea(cnts[x]) / (w*h) > 0.3)
-        cv2.circle(img,(xc,yc),5,(255,0,255))
-        cv2.imshow("img",img)
-        cv2.waitKey(10000)
         #print(mind > 3 , maxd/mind > 1.7, maxd/mind, cv2.contourArea(cnts[x]) / (w*h))
         if(mind > 3 and maxd/mind > 1.7 and maxd/mind < 3 and cv2.contourArea(cnts[x]) / (w*h) > 0.3):
             img = cv2.rectangle(img,(xc,yc),(xc + w,yc + h),(0,255,255),2)
@@ -51,20 +44,20 @@ def detect_arr(img):
     dir_x = -int((np.mean(nz[1]) - (len(mask_t[0])/2))*10)
     print(dir_x,dir_y)
     cv2.line(img,(xc,yc),(xc + dir_x,yc + dir_y),(255,0,0),5)
-    cv2.imshow("obj",mask_t)
-    cv2.imshow("img",img)
+    #cv2.imshow("obj",mask_t)
+    #cv2.imshow("img",img)
     if(abs(dir_x) > abs(dir_y)):
         if(dir_x > 0):
             print()
-            return "right"
+            return "r"
         else:
-            return "left"
+            return "l"
     else:
         if(dir_y > 0):
-            return "down"
+            return "d"
         else:
-            return "up"
+            return "u"
 img = cv2.imread("image.png")
 print(detect_arr(img))
-cv2.waitKey(10000)
+#cv2.waitKey(10000)
 cv2.destroyAllWindows()
