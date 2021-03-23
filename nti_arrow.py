@@ -10,7 +10,7 @@ Created on Tue Mar 23 08:20:40 2021
 def detect_arr(img):
     imgHSV = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
     mask = cv2.inRange(imgHSV,(0,0,0),(255,255,50))
-    cv2.imshow("mask",mask)
+    #cv2.imshow("mask",mask)
     cnts = cv2.findContours(mask,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
     cnts = cnts[1]
     best_id = -1
