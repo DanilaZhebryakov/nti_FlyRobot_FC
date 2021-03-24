@@ -30,7 +30,12 @@ takeoff(size)
 fly(1.2, 1.2)
 img = bridge.imgmsg_to_cv2(rospy.wait_for_message('main_camera/image_raw', Image), 'bgr8')
 try:
-    ret = detect_arr(img)
+    ret = 'n'
+    cnt_a = 0
+    while(ret == 'n'  and  cnt_a < 100):
+        ret = detect_arr(img)
+        cnt_a+= 1
+        
 except:
     print("oops")
     ret = 'x'
