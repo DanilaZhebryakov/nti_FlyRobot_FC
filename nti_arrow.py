@@ -23,7 +23,7 @@ def detect_arr(img):
         mind = min(w,h)
         maxd = max(w,h)
         #print(mind > 3 , maxd/mind > 1.7, maxd/mind, cv2.contourArea(cnts[x]) / (w*h))
-        if(mind > 3 and maxd/mind > 1.7 and maxd/mind < 3 and cv2.contourArea(cnts[x]) / (w*h) > 0.3):
+        if(mind > 3 and maxd/mind > 1.3 and maxd/mind < 3 and cv2.contourArea(cnts[x]) / (w*h) > 0.1):
             img = cv2.rectangle(img,(xc,yc),(xc + w,yc + h),(0,255,255),2)
             if(cv2.contourArea(cnts[x]) > best_val):
                 print(mind,maxd/mind,cv2.contourArea(cnts[x]) / (w*h))
